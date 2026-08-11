@@ -16,25 +16,32 @@ export function HeroSection({ locale }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
   const content = getContent(locale);
   const { props: desktopHeroProps } = getImageProps({
-    src: "/images/hero-image.jpg",
+    src: "/images/hero-image.webp",
     alt: content.hero.imageAlt,
     fill: true,
-    priority: true,
+    loading: "eager",
+    fetchPriority: "high",
     sizes: "100vw",
+    unoptimized: true,
   });
   const { props: mobileHeroProps } = getImageProps({
-    src: "/images/hero-mobile.png",
+    src: "/images/hero-mobile.webp",
     alt: content.hero.imageAlt,
     fill: true,
-    priority: true,
+    loading: "eager",
+    fetchPriority: "high",
     sizes: "100vw",
+    unoptimized: true,
   });
 
   return (
     <LazyMotion features={domAnimation}>
       <section id="inicio" className="hero-section scroll-mt-28" aria-label={restaurantConfig.name}>
         <picture>
-          <source media="(max-width: 639px)" srcSet={mobileHeroProps.srcSet} />
+          <source
+            media="(max-width: 639px)"
+            srcSet={mobileHeroProps.srcSet ?? mobileHeroProps.src}
+          />
           <img {...desktopHeroProps} alt={content.hero.imageAlt} className="hero-image" />
         </picture>
         <div className="hero-overlay" aria-hidden="true" />

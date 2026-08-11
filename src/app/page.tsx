@@ -16,7 +16,7 @@ function RestaurantJsonLd() {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     name: restaurantConfig.name,
-    image: "/images/hero-image.jpg",
+    image: "/images/hero-image.webp",
     address: {
       "@type": "PostalAddress",
       streetAddress: addressParts[0],

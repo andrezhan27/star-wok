@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       ? {
           images: [
             {
-              url: "/images/hero-image.jpg",
+              url: "/images/hero-image.webp",
               width: 2138,
               height: 1446,
               alt: "Interior do Star Wok",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: "Star Wok | Restaurante Buffet",
     description:
       "Um restaurante buffet em São Domingos de Rana com uma experiência inspirada no universo.",
-    ...(siteUrl ? { images: ["/images/hero-image.jpg"] } : {}),
+    ...(siteUrl ? { images: ["/images/hero-image.webp"] } : {}),
   },
 };
 
@@ -71,6 +71,24 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="pt" data-scroll-behavior="smooth" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          href="/images/hero-mobile.webp"
+          media="(max-width: 639px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          href="/images/hero-image.webp"
+          media="(min-width: 640px)"
+          fetchPriority="high"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
