@@ -1,7 +1,7 @@
 "use client";
 
 import { LazyMotion, domAnimation, m, useReducedMotion } from "framer-motion";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 
 import { restaurantConfig } from "@/config/star-wok";
 import type { Locale } from "@/content/star-wok-content";
@@ -15,18 +15,28 @@ type HeroSectionProps = {
 export function HeroSection({ locale }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
   const content = getContent(locale);
+  const { props: desktopHeroProps } = getImageProps({
+    src: "/images/hero-image.jpg",
+    alt: content.hero.imageAlt,
+    fill: true,
+    priority: true,
+    sizes: "100vw",
+  });
+  const { props: mobileHeroProps } = getImageProps({
+    src: "/images/hero-mobile.png",
+    alt: content.hero.imageAlt,
+    fill: true,
+    priority: true,
+    sizes: "100vw",
+  });
 
   return (
     <LazyMotion features={domAnimation}>
       <section id="inicio" className="hero-section scroll-mt-28" aria-label={restaurantConfig.name}>
-        <Image
-          src="/images/hero-image.jpg"
-          alt={content.hero.imageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="hero-image"
-        />
+        <picture>
+          <source media="(max-width: 639px)" srcSet={mobileHeroProps.srcSet} />
+          <img {...desktopHeroProps} alt={content.hero.imageAlt} className="hero-image" />
+        </picture>
         <div className="hero-overlay" aria-hidden="true" />
         <div className="hero-orbit" aria-hidden="true" />
 

@@ -1384,18 +1384,24 @@ a.footer-information-row {
   }
 
   .buffet-carousel-dot {
-    width: 40px;
+    width: auto;
+    min-width: 0;
     height: 44px;
+    flex: 1 1 0;
   }
 
   .buffet-carousel-dot span {
-    width: 22px;
+    width: min(22px, 72%);
   }
 
   .buffet-carousel-toolbar {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
     padding-inline: 0.45rem;
+  }
+
+  .buffet-carousel-toolbar > p {
+    flex-shrink: 0;
   }
 
   .buffet-pricing-heading {
@@ -1414,8 +1420,11 @@ a.footer-information-row {
   }
 
   .buffet-carousel-dots {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    min-width: 0;
+    flex: 1;
+    justify-content: stretch;
+    gap: 0.1rem;
   }
 
   .information-map,
