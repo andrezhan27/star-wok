@@ -573,9 +573,60 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
-.buffet-pricing-heading h3 {
+.buffet-pricing-heading-label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.buffet-pricing-heading-label strong {
   color: var(--color-secondary);
-  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.buffet-pricing-toggle {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.2rem;
+  background: rgba(45, 37, 91, 0.035);
+}
+
+.buffet-pricing-toggle button {
+  min-height: 32px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  background: transparent;
+  color: var(--color-secondary);
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.buffet-pricing-toggle button[aria-selected="true"] {
+  background: var(--color-secondary);
+  color: var(--color-surface);
+  box-shadow: 0 4px 12px rgba(45, 37, 91, 0.15);
+}
+
+.buffet-pricing-body {
+  height: 33rem;
+}
+
+.buffet-price-panel {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }
 
 .buffet-price-list {
@@ -623,6 +674,7 @@ a:focus-visible {
 }
 
 .buffet-child-pricing {
+  flex: 1;
   border-top: 1px solid var(--color-border);
   background: rgba(184, 138, 50, 0.08);
   padding: 1.3rem clamp(1.4rem, 3vw, 2rem) 1.45rem;
@@ -638,6 +690,28 @@ a:focus-visible {
 .buffet-child-pricing p {
   color: var(--color-text-muted);
   font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.buffet-child-pricing .buffet-dine-in-note {
+  margin-top: 0.5rem;
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+.buffet-takeaway-list {
+  display: grid;
+  flex: 1;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.buffet-takeaway-note {
+  margin-top: auto;
+  border-top: 1px solid var(--color-border);
+  background: rgba(45, 37, 91, 0.045);
+  padding: 1rem clamp(1.4rem, 3vw, 2rem) 1.15rem;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
   line-height: 1.55;
 }
 
@@ -1322,6 +1396,21 @@ a.footer-information-row {
     flex-wrap: wrap;
     gap: 0.5rem;
     padding-inline: 0.45rem;
+  }
+
+  .buffet-pricing-heading {
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .buffet-pricing-heading span {
+    font-size: 0.84rem;
+  }
+
+  .buffet-pricing-toggle button {
+    min-height: 30px;
+    padding-inline: 0.6rem;
+    font-size: 0.69rem;
   }
 
   .buffet-carousel-dots {

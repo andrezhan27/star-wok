@@ -7,6 +7,13 @@ export type BuffetPrice = {
   price: string;
 };
 
+export type TakeawayPrice = {
+  id: string;
+  item: string;
+  details?: string;
+  price: string;
+};
+
 const pricesByLocale: Record<Locale, BuffetPrice[]> = {
   pt: [
     { id: "weekday-lunch", meal: "Almoço", schedule: "Segunda a sexta", price: "14,95 €" },
@@ -22,6 +29,33 @@ const pricesByLocale: Record<Locale, BuffetPrice[]> = {
   ],
 };
 
+const takeawayPricesByLocale: Record<Locale, TakeawayPrice[]> = {
+  pt: [
+    {
+      id: "mixed-food",
+      item: "Mix de comidas (por caixa)",
+      details: "Grelhados, gambas e salmão não incluídos.",
+      price: "9,50 €",
+    },
+    { id: "grilled-food", item: "Grelhados (por caixa)", price: "11,50 €" },
+    { id: "prawns-salmon", item: "Gambas ou salmão (por caixa)", price: "13,50 €" },
+  ],
+  en: [
+    {
+      id: "mixed-food",
+      item: "Mixed food (per box)",
+      details: "Grilled food, prawns and salmon not included.",
+      price: "€9.50",
+    },
+    { id: "grilled-food", item: "Grilled food (per box)", price: "€11.50" },
+    { id: "prawns-salmon", item: "Prawns or salmon (per box)", price: "€13.50" },
+  ],
+};
+
 export function getAdultBuffetPrices(locale: Locale) {
   return pricesByLocale[locale];
+}
+
+export function getTakeawayPrices(locale: Locale) {
+  return takeawayPricesByLocale[locale];
 }
